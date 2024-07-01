@@ -21,9 +21,17 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    public User(Long id, String name, String email) {
+    @Column(name= "Profession")
+    private UserType userType;
+
+    public void performAction() {
+        userType.performAction();
+    }
+
+    public User(Long id, String name, String email, UserType userType) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.userType = userType;
     }
 }

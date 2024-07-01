@@ -28,10 +28,9 @@ public class UserController {
         Optional<User> user = userService.getUserByID(id);
         if (user.isPresent()) {
             model.addAttribute("user", user.get());
-            return "user"; // Вернет имя шаблона "user.html"
+            return "user";
         } else {
-            // Обработка случая, когда пользователь не найден
-            return "error"; // Вернет другой шаблон для обработки ошибки
+            return "error";
         }
     }
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <title>User Profile</title>
 </head>
 <body>
-<h1 th:text="'Profile ' + ${user.name}"></h1>
-<p>
-    ID: <span th:text="${user.id}"></span>
-</p>
+<h1>User Profile</h1>
+<p>Name: <span th:text="${user.name}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Profession: <span th:text="${user.userType.performAction()}"></span></p>
 </body>
 </html>
 

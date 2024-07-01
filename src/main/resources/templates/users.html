@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Profession</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td th:text="${user.id}"></td>
         <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.name}"></a></td>
         <td th:text="${user.email}"></td>
+        <td th:text="${user.userType.performAction()}"></td>
     </tr>
     </tbody>
 </table>
