@@ -18,20 +18,21 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public String listUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "users";
     }
 
-//    @GetMapping
-//    public String listUsers(Model model) {
-//        model.addAttribute("users", userService.getAllUsers());
-//        return "users";
-//    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserByID (@PathVariable Long id, Model model){
+    public String getUserProfile(@PathVariable Long id, Model model) {
         Optional<User> user = userService.getUserByID(id);
-        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            return "user"; // Вернет имя шаблона "user.html"
+        } else {
+            // Обработка случая, когда пользователь не найден
+            return "error"; // Вернет другой шаблон для обработки ошибки
+        }
     }
 
     @PostMapping
