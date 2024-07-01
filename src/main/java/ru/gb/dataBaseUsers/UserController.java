@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/users")
@@ -15,14 +18,20 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public String listUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
-        return "users";
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
+
+//    @GetMapping
+//    public String listUsers(Model model) {
+//        model.addAttribute("users", userService.getAllUsers());
+//        return "users";
+//    }
+
     @GetMapping("/{id}")
-    public String ListUsers(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.getUserByID(id));
-        return "user";
+    public ResponseEntity<User> getUserByID (@PathVariable Long id, Model model){
+        Optional<User> user = userService.getUserByID(id);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
