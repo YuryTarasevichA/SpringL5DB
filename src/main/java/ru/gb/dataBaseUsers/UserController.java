@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/users")
@@ -19,10 +22,17 @@ public class UserController {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
+
     @GetMapping("/{id}")
-    public String ListUsers(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.getUserByID(id));
-        return "user";
+    public String getUserProfile(@PathVariable Long id, Model model) {
+        Optional<User> user = userService.getUserByID(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            return "user"; // Вернет имя шаблона "user.html"
+        } else {
+            // Обработка случая, когда пользователь не найден
+            return "error"; // Вернет другой шаблон для обработки ошибки
+        }
     }
 
     @PostMapping
