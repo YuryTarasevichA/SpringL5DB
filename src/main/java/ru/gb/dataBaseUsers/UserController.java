@@ -35,10 +35,11 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User newUser = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    @PostMapping("/create")
+    public String createUser(@RequestParam String name, @RequestParam String email) {
+        User newUser = new User(null, name, email);
+        userService.createUser(newUser);
+        return "redirect:/users"; // Перенаправляем пользователя на страницу со списком пользователей после создания
     }
 
     @PutMapping("/{id}")
