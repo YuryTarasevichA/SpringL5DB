@@ -21,9 +21,13 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    public User(Long id, String name, String email) {
+    @Column(name = "PROFESSION")
+    private String profession;
+
+    public User(Long id, String name, String email, String profession) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.profession = profession;
     }
 }

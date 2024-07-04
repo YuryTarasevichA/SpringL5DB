@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Profession</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td th:text="${user.id}"></td>
         <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.name}"></a></td>
         <td th:text="${user.email}"></td>
+        <td th:text="${user.profession}"></td>
     </tr>
     </tbody>
 </table>
@@ -28,6 +30,8 @@
     <input type="text" id="name" name="name"><br>
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email"><br>
+    <label for="profession">Profession:</label><br>
+    <input type="text" id="profession" name="profession"><br>
     <input type="submit" value="Submit">
 </form>
 

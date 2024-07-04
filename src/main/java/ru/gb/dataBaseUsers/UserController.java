@@ -36,8 +36,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@RequestParam String name, @RequestParam String email) {
-        User newUser = new User(null, name, email);
+    public String createUser(@RequestParam String name, @RequestParam String email, @RequestParam String profession) {
+        User newUser = new User(null, name, email, profession);
         userService.createUser(newUser);
         return "redirect:/users"; // Перенаправляем пользователя на страницу со списком пользователей после создания
     }
