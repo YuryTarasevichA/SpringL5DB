@@ -13,6 +13,6 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return rawPassword.equals(encodedPassword);
+        return encode(rawPassword).equals(encodedPassword);
     }
 }

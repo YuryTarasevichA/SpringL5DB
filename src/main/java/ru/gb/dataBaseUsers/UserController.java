@@ -28,10 +28,9 @@ public class UserController {
         Optional<User> user = userService.getUserByID(id);
         if (user.isPresent()) {
             model.addAttribute("user", user.get());
-            return "user"; // Вернет имя шаблона "user.html"
+            return "user";
         } else {
-            // Обработка случая, когда пользователь не найден
-            return "error"; // Вернет другой шаблон для обработки ошибки
+            return "error";
         }
     }
 
@@ -39,7 +38,7 @@ public class UserController {
     public String createUser(@RequestParam String name, @RequestParam String email, @RequestParam String profession) {
         User newUser = new User(null, name, email, profession);
         userService.createUser(newUser);
-        return "redirect:/users"; // Перенаправляем пользователя на страницу со списком пользователей после создания
+        return "redirect:/users";
     }
 
     @PutMapping("/{id}")
